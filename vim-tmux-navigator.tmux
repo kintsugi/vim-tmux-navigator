@@ -12,7 +12,8 @@ if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
     "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
 
 
-if (test -n "$VIM_TMUX_NAVIGATOR_DISABLE_BINDINGS") {
+disable_bindings=$(tmux run 'echo #{@navigator_disable_bindings}')
+if (test -n "$disable_bindings") {
   return
 }
 
