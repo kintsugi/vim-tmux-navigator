@@ -3,7 +3,9 @@ direction=$1
 keys=$2
 
 prompt_action() {
-  tmux set -u -w @navigator_selected_action
+  tmux set -u -w @smart_edge_dir
+  tmux set -u -w @smart_edge_keys
+  tmux set -u -w @smart_edge_selection
   tmux command-prompt -k -p "Press Enter to 'send-keys $keys' or any other key to 'select-pane $direction' [Enter/*]: " "set -w @smart_edge_dir '$direction'; set -w @smart_edge_keys '$keys'; set -w @smart_edge_selection '%1'; run '#{smart_edge}'"
 }
 
@@ -23,8 +25,11 @@ run_action() {
   if (test "$selection" = "Enter") {
     tmux send-keys "$keys"
   } else {
-  tmux run "#{navigator} select-pane $direction"
+    tmux run "#{navigator} select-pane $direction"
   }
+  tmux set -u -w @smart_edge_dir
+  tmux set -u -w @smart_edge_keys
+  tmux set -u -w @smart_edge_selection
 }
 
 if (test -z $direction && test -z $keys) {
