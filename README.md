@@ -1,5 +1,11 @@
-Vim Tmux Navigator
+kintsu's Vim Tmux Navigator
 ==================
+
+This is a modified version of [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator) which does not wrap around when reaching the end of the window.
+
+The no wrapping functionality is based off of [`dalejung/tmux-select-pane-no-wrap`](https://github.com/dalejung/tmux-select-pane-no-wrap), but updated to use the current HEAD of `christoomey/vim-tmux-navigator` and rewritten in zsh.
+
+-----
 
 This plugin is a repackaging of [Mislav Marohnić's][] tmux-navigator
 configuration described in [this gist][]. When combined with a set of tmux
