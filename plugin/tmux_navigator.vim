@@ -16,6 +16,7 @@ function! s:VimNavigate(direction)
 endfunction
 
 if !get(g:, 'tmux_navigator_no_mappings', 0)
+  echo 'loading bindings'
   nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
   nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
   nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
@@ -108,7 +109,7 @@ function! s:TmuxAwareNavigate(direction)
       catch /^Vim\%((\a\+)\)\=:E141/ " catches the no file name error
       endtry
     endif
-    let args = 'run "#{tmux-aware-no-wrap-navigate} ' . tr(a:direction, 'phjkl', 'lLDUR').'"'
+    let args = 'run "#{pane-nav} ' . tr(a:direction, 'phjkl', 'lLDUR').'"'
     silent call s:TmuxCommand(args)
     if s:NeedsVitalityRedraw()
       redraw!
