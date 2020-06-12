@@ -108,7 +108,6 @@ function! s:TmuxAwareNavigate(direction)
       catch /^Vim\%((\a\+)\)\=:E141/ " catches the no file name error
       endtry
     endif
-    echo a:direction
     let args = 'run "#{navigator} select-pane ' . tr(a:direction, 'phjkl', 'lLDUR').'"'
     silent call s:TmuxCommand(args)
     if s:NeedsVitalityRedraw()
