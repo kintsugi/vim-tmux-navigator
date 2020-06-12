@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+tmux-aware-no-wrap-navigate() {
+  direction=$1
+  if (pane_at_edge $direction) {
+    tmux select-pane "-$direction"
+  } else {
+    :
+  }
+}
